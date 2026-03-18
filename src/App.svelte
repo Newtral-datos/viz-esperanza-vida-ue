@@ -224,8 +224,7 @@
         <button class="tt-close" on:click={() => tooltip = { ...tooltip, visible: false }}>✕</button>
       {/if}
       <div class="tt-header">
-        <strong>{tooltip.nombre}</strong>
-        <span class="tt-pais">{tooltip.pais}</span>
+        <strong>{tooltip.nombre} <span class="tt-pais">({tooltip.pais})</span></strong>
       </div>
       <div class="tt-valores">
         <div class="tt-val-item">
@@ -245,7 +244,7 @@
         </div>
       </div>
       {#if chart.pathT || chart.pathH || chart.pathM}
-        <svg width={CW} height={CH} style="display:block;margin-top:6px">
+        <svg width="100%" viewBox="0 0 {CW} {CH}" style="display:block;margin-top:8px">
           {#each chart.yticks as t}
             <line x1={PAD.l} x2={CW - PAD.r} y1={t.y} y2={t.y} stroke="#555" stroke-width="0.4" stroke-dasharray="2,2"/>
             <text x={PAD.l - 3} y={t.y + 3.5} text-anchor="end" font-size="8" fill="#888">{t.label}</text>
@@ -383,17 +382,12 @@
     cursor: pointer; padding: 4px;
   }
 
-  .tt-header { display: flex; flex-direction: column; margin-bottom: 6px; }
-  .tt-pais { font-size: 10px; color: #aaa; }
+  .tt-header { margin-bottom: 5px; font-size: 12px; }
+  .tt-pais { font-size: 11px; color: #aaa; font-weight: normal; }
 
-  .tt-valores { display: flex; flex-direction: column; gap: 3px; margin-bottom: 2px; }
-  .tt-val-item { display: flex; align-items: center; gap: 6px; }
-  .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-  .tt-val-label { flex: 1; color: #ccc; font-size: 11px; }
-  .tt-val-num { font-weight: bold; font-size: 13px; }
-
-  @media (max-width: 480px) {
-    .tt-val-label { font-size: 13px; }
-    .tt-val-num   { font-size: 15px; }
-  }
+  .tt-valores { display: flex; gap: 10px; margin-bottom: 2px; }
+  .tt-val-item { display: flex; align-items: center; gap: 4px; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .tt-val-label { color: #ccc; font-size: 10px; }
+  .tt-val-num { font-weight: bold; font-size: 11px; }
 </style>
