@@ -158,7 +158,7 @@
     const [geojson, world, data] = await Promise.all([
       fetch('https://gisco-services.ec.europa.eu/distribution/v2/nuts/geojson/NUTS_RG_20M_2021_4326_LEVL_2.geojson').then(r => r.json()),
       fetch('https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson').then(r => r.json()),
-      fetch('/data.json').then(r => r.json())
+      fetch(import.meta.env.BASE_URL + 'data.json').then(r => r.json())
     ]);
 
     _geojson = geojson;
